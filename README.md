@@ -7,7 +7,7 @@
 ### Links
 - [INSTALLATION](#installation)
 - [RUNNING](#running)
-- USEFUL COMMANDS
+- [USEFUL COMMANDS](#useful-commands)
 
 
 # [Installation](#links)
