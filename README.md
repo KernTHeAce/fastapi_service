@@ -52,4 +52,3 @@ isort . --line-length 120
 pylint src
 pylint tests
 ```
-

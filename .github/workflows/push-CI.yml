@@ -1,0 +1,50 @@
+name: push-CI
+
+on:
+  push:
+    branches:
+      - '**'        # matches every branch
+
+
+jobs:
+  lint-n-test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+
+    - uses: actions/checkout@v2
+        
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip' # caching pip dependencies
+        cache-dependency-path: '**/requirements-dev.txt'
+
+    - name: Install dependencies
+      run: |
+          pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+    - name: Checking with isort
+      run: |
+        python3 -m isort -c .
+
+    - name: Checking with black
+      run: |
+        python3 -m black --diff --color --line-length 120 .
+
+    - name: Linting with pylint
+      run: |
+        python3 -m pylint src
+        python3 -m pylint tests
+
+    - name: Unittest with coverage
+      env:
+          COVERAGE_LIMIT: 50
+      run: |
+        pytest tests
