@@ -26,7 +26,7 @@ python -m uvicorn src.server.__main__:app --reload
 ```
 `--reload`: make the server restart after code changes
 
-# Useful Commands
+# [Useful Commands](#links)
 
 ## Running tests
 
