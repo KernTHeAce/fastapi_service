@@ -43,8 +43,6 @@ jobs:
         python3 -m pylint src
         python3 -m pylint tests
 
-    - name: Unittest with coverage
-      env:
-          COVERAGE_LIMIT: 50
+    - name: Running tests
       run: |
         pytest tests
